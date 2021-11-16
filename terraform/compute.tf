@@ -3,9 +3,10 @@ resource "aws_instance" "Bastion" {
   ami	= var.bastion_ami
   instance_type = var.default_instance_type
   key_name = aws_key_pair.deploy.key_name
+  subnet_id = element(aws_subnet.public_az1, count.index)
 
     tags = {
-    Name    = "bation${count.index}.${var.project}"
+    Name    = "bation_0${count.index + 1}.${var.project}"
     Project = "${var.project}"
   }
 }
@@ -18,7 +19,7 @@ resource "aws_instance" "DBServer" {
   key_name = aws_key_pair.deploy.key_name
 
   tags = {
-    Name    = "dbserver${count.index}.${var.project}"
+    Name    = "dbserver_0${count.index + 1}.${var.project}"
     Project = "${var.project}"
   }
 }
@@ -30,7 +31,7 @@ resource "aws_instance" "AppServer" {
   key_name = aws_key_pair.deploy.key_name
 
   tags = {
-    Name    = "appserver${count.index}.${var.project}"
+    Name    = "appserver_0${count.index + 1}.${var.project}"
     Project = "${var.project}"
   }  
 }

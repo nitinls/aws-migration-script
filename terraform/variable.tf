@@ -7,6 +7,11 @@ variable "vpc_cidr_block" {
   default = "10.10.0.0/16"
 }
 
+variable "avail_zone" {
+  type = list(string)
+  default = ["ap-south-1a","ap-south-1b"]
+}
+
 variable "public_subnet_cidr_block" {
   type = list(string)
   default = ["10.10.0.0/24","10.10.1.0/24"]
