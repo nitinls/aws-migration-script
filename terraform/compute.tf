@@ -3,7 +3,7 @@ resource "aws_instance" "Bastion" {
   ami	= var.bastion_ami
   instance_type = var.default_instance_type
   key_name = aws_key_pair.deploy.key_name
-  subnet_id = element(aws_subnet.public_az1, count.index)
+#  subnet_id = element(aws_subnet.public_az1, count.index)
 
     tags = {
     Name    = "bation_0${count.index + 1}.${var.project}"
