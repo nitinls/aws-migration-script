@@ -18,5 +18,9 @@ terraform {
 
 resource "aws_key_pair" "deploy" {
   key_name   = "${var.project}_deploy_key"
-  public_key = file("~/.ssh/id_rsa.pub")
+  public_key = file("./key-pair/id_rsa.liftshift.pub")
+  tags = {
+    "name" = "${var.project}_deploy_key"
+    "project" = "${var.project}"
+  }
 }

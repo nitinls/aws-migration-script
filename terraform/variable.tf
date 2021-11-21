@@ -13,8 +13,7 @@ variable "avail_zone" {
 }
 
 variable "public_subnet_cidr_block" {
-  type = list(string)
-  default = ["10.10.0.0/24","10.10.1.0/24"]
+  default = "10.10.0.0/24"
 }
 
 variable "private_subnet_cidr_block" {
@@ -25,6 +24,11 @@ variable "private_subnet_cidr_block" {
 variable "private_subnet_db_cidr_block" {
   type = list(string)
   default = ["10.10.11.0/24","10.10.12.0/24"]
+}
+
+variable "nat_enable" {
+  type = bool 
+  default = true
 }
 variable "default_instance_type" {
   default = "t2.micro"
