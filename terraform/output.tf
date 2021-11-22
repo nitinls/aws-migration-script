@@ -12,15 +12,21 @@ output "aws_db_subnet_ids_private" {
 }
 
 output "app_server_password" {
-  value = aws_instance.AppServer.*.get_password_data
+  value = [
+    for host in aws_instance.AppServer : rsadecrypt(host.password_data, file("./key-pair/id_rsa.liftshift"))
+  ]
 }
 
 output "db_server_password" {
-  value = aws_instance.DBServer.*.get_password_data
+  value = [
+    for host in aws_instance.DBServer : rsadecrypt(host.password_data, file("./key-pair/id_rsa.liftshift"))
+  ]
 }
 
 output "bastion_server_password" {
-  value = aws_instance.Bastion.*.get_password_data
+  value = [
+    for host in aws_instance.Bastion : rsadecrypt(host.password_data, file("./key-pair/id_rsa.liftshift"))
+  ]
 }
 
 output "app_server_private_ip" {

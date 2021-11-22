@@ -1,6 +1,8 @@
 provider "aws" {
   region = var.region
   shared_credentials_file = "$HOME/.aws/credentials"
+  # access_key = "AKIAZGS76CMHNDXH224K"
+  # secret_key = "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"
   profile = "default"
 }
 
@@ -9,7 +11,7 @@ terraform {
     bucket  = "lift-and-shift-outsource"
     region  = "ap-south-1"
     encrypt = true
-    key     = "dev/terraform.tfstate"
+    key     = "devops/terraform.tfstate"
     access_key = "AKIAWG46QWYD6WMQ4XGE"
     secret_key = "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"
 
