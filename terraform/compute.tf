@@ -6,7 +6,7 @@ resource "aws_instance" "Bastion" {
   availability_zone       = element(slice(var.avail_zone, 0, 1), count.index)
   subnet_id               = aws_subnet.public_az1.id
   get_password_data       = true
-  vpc_security_group_ids  = [aws_security_group.default.id]
+  vpc_security_group_ids  = [aws_security_group.default.id, aws_security_group.Bastion_rdp.id]
   
   tags = {
     Name    = "bation_0${count.index + 1}.${var.project}"

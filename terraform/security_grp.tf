@@ -49,3 +49,17 @@ resource "aws_security_group_rule" "http" {
   cidr_blocks       = [var.vpc_cidr_block]
   security_group_id = aws_security_group.default.id
 }
+
+resource "aws_security_group" "Bastion_rdp" {
+  name   = "${var.project}-Bastion_rdp "
+  vpc_id = aws_vpc.main.id
+}
+
+resource "aws_security_group_rule" "allow-bastion-rdp" {
+  type              = "ingress"
+  from_port         = 3389
+  to_port           = 3389
+  protocol          = "TCP"
+  cidr_blocks       = ["0.0.0.0/24"]
+  security_group_id = aws_security_group.Bastion_rdp.id
+}
